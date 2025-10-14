@@ -15,7 +15,18 @@ return {
 			enabled = true,
 			timeout = 3000,
 		},
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+			debug = {
+				scores = false, -- show scores in the list
+				leaks = false, -- show when pickers don't get garbage collected
+				explorer = false, -- show explorer debug info
+				files = true, -- show file debug info
+				grep = true, -- show file debug info
+				proc = false, -- show proc debug info
+				extmarks = false, -- show extmarks errors
+			},
+		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },

@@ -25,15 +25,15 @@ vim.opt.incsearch = true
 vim.cmd(":hi statusline guibg=NONE")
 -- LSP utils
 local map = vim.keymap.set
-vim.keymap.set("n", "<leader>o", ":update<CR> :source<CR>")
+--vim.keymap.set("n", "<leader>o", ":update<CR> :source<CR>")
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 --vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[G]oto Code [A]ction" })
 
-vim.lsp.enable({ "lua_ls", "csharp_ls" })
+vim.lsp.enable({ "lua_ls", "csharp_ls", "pyright"})
 require("config.lazy")
-require("config.dap")
+--require("config.dap")
 require("config.terminal")
 
 vim.diagnostic.config({
@@ -53,3 +53,5 @@ vim.diagnostic.config({
 		prefix = "",
 	},
 })
+vim.g.python3_host_prog = "/home/peter/venv/bin/python"
+

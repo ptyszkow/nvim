@@ -47,10 +47,12 @@ return {
 					module = "lazydev.integrations.blink",
 					score_offset = 100,
 				},
+-- 				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 			},
 
 			per_filetype = {
 				codecompanion = { "codecompanion" },
+ --    		sql = { 'snippets', 'dadbod', 'buffer' },
 			},
 		},
 
@@ -61,5 +63,5 @@ return {
 		-- See the fuzzy documentation for more information
 		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
-	opts_extend = { "sources.default" },
+	--opts_extend = { "sources.default" },
 }
