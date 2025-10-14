@@ -23,35 +23,35 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.cmd(":hi statusline guibg=NONE")
--- LSP utils
-local map = vim.keymap.set
---vim.keymap.set("n", "<leader>o", ":update<CR> :source<CR>")
+
+vim.keymap.set("n", "<leader>ui", ":update<CR> :source<CR>")
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 --vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[G]oto Code [A]ction" })
 
-vim.lsp.enable({ "lua_ls", "csharp_ls", "pyright"})
+vim.lsp.enable({ "lua_ls", "csharp_ls", "pyright" })
+
 require("config.lazy")
---require("config.dap")
+require("config.dap")
 require("config.terminal")
 
 vim.diagnostic.config({
 	virtual_text = {
-		prefix = "●", -- could be "■", "▎", "x"
+		prefix = "●",
 		spacing = 4,
 	},
-	signs = true, -- show signs in the gutter
+	signs = true,
 	underline = true,
-	update_in_insert = false, -- don't update diagnostics while typing
-	severity_sort = true, -- order by severity (errors first)
+	update_in_insert = false,
+	severity_sort = true,
 
 	float = {
-		border = "rounded", -- nice borders around floating windows
-		source = "always", -- show the source of the diagnostic
+		border = "rounded",
+		source = true,
 		header = "",
 		prefix = "",
 	},
 })
-vim.g.python3_host_prog = "/home/peter/venv/bin/python"
 
+vim.g.python3_host_prog = "/home/peter/venv/bin/python"

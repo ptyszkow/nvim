@@ -30,4 +30,5 @@ return {
 			require("conform").format({ async = true, lsp_format = "fallback", range = range })
 		end, { range = true })
 	end,
+	keys = {{"<leader>cf", "<cmd>Format<cr>"}}
 }
