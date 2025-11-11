@@ -8,7 +8,8 @@ return {
 				python = { "isort", "black" },
 				sql = {"sqlformat"},
 				json = {"jq"},
-				html = {"tidy"}
+				html = {"tidy"},
+				nix = {"alejandra"}
 				-- You can customize some of the format options for the filetype (:help conform.format)
 			},
 		})
