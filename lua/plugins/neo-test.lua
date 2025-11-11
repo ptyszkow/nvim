@@ -1,23 +1,15 @@
 return {
 	"nvim-neotest/neotest",
+	tag = "v5.7.0",
 	dependencies = {
-		"nvim-neotest/nvim-nio",
-		"nvim-lua/plenary.nvim",
-		"antoinemadec/FixCursorHold.nvim",
-		"nvim-treesitter/nvim-treesitter",
-		"nsidorenco/neotest-vstest",
 		"Issafalcon/neotest-dotnet",
 	},
 	config = function()
 		require("neotest").setup({
 			adapters = {
-				require("neotest-dotnet"),
-			},
+				require("neotest-dotnet")
+			}
 		})
-
-		--
-
-		-- require("neotest").output_panel.open()
 	end,
 	keys = {
 		{
@@ -25,7 +17,7 @@ return {
 			function()
 				require("neotest").summary.toggle()
 			end,
-			mode = {},
+			mode = "n",
 			desc = "Toggle Test Summary",
 		},
 		{
@@ -33,7 +25,7 @@ return {
 			function()
 				require("neotest").watch.toggle(vim.fn.expand("%"))
 			end,
-			mode = {},
+			mode = "n",
 			desc = "Toggle Test Watch",
 		},
 		{
@@ -41,7 +33,7 @@ return {
 			function()
 				require("neotest").run.run()
 			end,
-			mode = {},
+			mode = "n",
 			desc = "Run Nearest Test",
 		},
 		{
@@ -49,7 +41,7 @@ return {
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
 			end,
-			mode = {},
+			mode = "n",
 			desc = "Run Test File",
 		},
 		{
@@ -57,7 +49,7 @@ return {
 			function()
 				require("neotest").output_panel.clear()
 			end,
-			mode = {},
+			mode = "n",
 			desc = "Clear Test Output",
 		},
 		{
@@ -65,7 +57,7 @@ return {
 			function()
 				require("neotest").output_panel.toggle()
 			end,
-			mode = {},
+			mode = "n",
 			desc = "Toggle Test Output",
 		},
 	},
