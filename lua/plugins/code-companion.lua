@@ -8,16 +8,16 @@ return {
 		require("codecompanion").setup({
 			strategies = {
 				chat = {
-					adapter = "openai",
-					model = "gpt-5",
+					name = "copilot",
+					model = "claude-sonnet-4",
 				},
 				inline = {
-					adapter = "openai",
-					model = "gpt-5",
+					name = "copilot",
+					model = "claude-sonnet-4",
 				},
 				cmd = {
-					adapter = "openai",
-					model = "gpt-5",
+					name = "copilot",
+					model = "claude-sonnet-4",
 				},
 			},
 			opts = {
@@ -25,14 +25,14 @@ return {
 			},
 		})
 
-		vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+		vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true, desc = "AI Actions" })
 		vim.keymap.set(
 			{ "n", "v" },
 			"<Leader>at",
 			"<cmd>CodeCompanionChat Toggle<cr>",
-			{ noremap = true, silent = true }
+			{ noremap = true, silent = true, desc = "Toggle AI Chat" }
 		)
-		vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+		vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true, desc = "Add to AI Chat" })
 
 		-- Expand 'cc' into 'CodeCompanion' in the command line
 		vim.cmd([[cab cc CodeCompanion]])

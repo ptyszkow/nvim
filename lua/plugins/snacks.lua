@@ -7,7 +7,16 @@ return {
 		animate = { enabled = true },
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
-		explorer = { enabled = true },
+    explorer = {
+      enabled = true,
+      keymaps = {
+        ["<C-s>"] = function(current)
+          if current and current.path and not current.is_directory then
+            vim.cmd("vsplit " .. vim.fn.fnameescape(current.path))
+          end
+        end,
+      },
+    },
 		indent = { enabled = true },
 		input = { enabled = true },
 

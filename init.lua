@@ -24,11 +24,11 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 vim.cmd(":hi statusline guibg=NONE")
 
-vim.keymap.set("n", "<leader>ui", ":update<CR> :source<CR>")
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>ui", ":update<CR> :source<CR>", { desc = "Update and Source Init" })
+vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format Buffer" })
 --vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[G]oto Code [A]ction" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 vim.lsp.enable({ "lua_ls", "csharp_ls", "pyright" })
 

@@ -26,7 +26,7 @@ return {
 				require("neotest").summary.toggle()
 			end,
 			mode = {},
-			desc = "Test",
+			desc = "Toggle Test Summary",
 		},
 		{
 			"<leader>tw",
@@ -34,7 +34,7 @@ return {
 				require("neotest").watch.toggle(vim.fn.expand("%"))
 			end,
 			mode = {},
-			desc = "Test",
+			desc = "Toggle Test Watch",
 		},
 		{
 			"<leader>trn",
@@ -42,7 +42,7 @@ return {
 				require("neotest").run.run()
 			end,
 			mode = {},
-			desc = "Test",
+			desc = "Run Nearest Test",
 		},
 		{
 			"<leader>tr",
@@ -50,7 +50,7 @@ return {
 				require("neotest").run.run(vim.fn.expand("%"))
 			end,
 			mode = {},
-			desc = "Test",
+			desc = "Run Test File",
 		},
 		{
 			"<leader>tc",
@@ -58,7 +58,7 @@ return {
 				require("neotest").output_panel.clear()
 			end,
 			mode = {},
-			desc = "Test",
+			desc = "Clear Test Output",
 		},
 		{
 			"<leader>tt",
@@ -66,7 +66,7 @@ return {
 				require("neotest").output_panel.toggle()
 			end,
 			mode = {},
-			desc = "Test",
+			desc = "Toggle Test Output",
 		},
 	},
 }
