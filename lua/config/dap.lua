@@ -1,5 +1,45 @@
 local dap = require("dap")
 
+vim.fn.sign_define("DapBreakpoint", {
+	text = "●",
+	texthl = "DapBreakpoint",
+	linehl = "",
+	numhl = "",
+})
+vim.fn.sign_define("DapBreakpointCondition", {
+	text = "",
+	texthl = "DapBreakpointCondition",
+	linehl = "",
+	numhl = "",
+})
+vim.fn.sign_define("DapBreakpointRejected", {
+	text = "",
+	texthl = "DapBreakpointRejected",
+	linehl = "",
+	numhl = "",
+})
+vim.fn.sign_define("DapLogPoint", {
+	text = "",
+	texthl = "DapLogPoint",
+	linehl = "",
+	numhl = "",
+})
+vim.fn.sign_define("DapStopped", {
+	text = "󰁕",
+	texthl = "DapStopped",
+	linehl = "DapStoppedLine",
+	numhl = "",
+})
+
+-- 2. Define the colors (the "colorful" part)
+-- You can change "Red", "Orange", etc. to any hex code like "#FF0000"
+vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "Red" })
+vim.api.nvim_set_hl(0, "DapBreakpointCondition", { fg = "Orange" })
+vim.api.nvim_set_hl(0, "DapBreakpointRejected", { fg = "DarkRed" })
+vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "Blue" })
+vim.api.nvim_set_hl(0, "DapStopped", { fg = "Cyan" })
+vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#333333" }) -- Dark gray background for the line
+
 -- Python setup
 dap.adapters.python = {
 	type = "executable",
