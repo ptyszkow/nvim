@@ -6,24 +6,40 @@ return {
 	},
 	config = function()
 		require("codecompanion").setup({
-			strategies = {
-				chat = {
-					name = "copilot",
-					model = "claude-sonnet-4",
-				},
-				inline = {
-					name = "copilot",
-					model = "claude-sonnet-4",
-				},
-				cmd = {
-					name = "copilot",
-					model = "claude-sonnet-4",
-				},
-			},
-			opts = {
-				log_level = "DEBUG", -- or "TRACE"
-			},
-		})
+			-- strategies = {
+			-- 	chat = {
+			-- 		name = "copilot",
+			-- 		model = "claude-sonnet-4",
+			-- 	},
+			-- 	inline = {
+			-- 		name = "copilot",
+			-- 		model = "claude-sonnet-4",
+			-- 	},
+			-- 	cmd = {
+			-- 		name = "copilot",
+			-- 		model = "claude-sonnet-4",
+			-- 	},
+			-- },
+			-- opts = {
+			-- 	log_level = "DEBUG", -- or "TRACE"
+			-- },
+      strategies = {
+        chat = {
+          adapter = "openai",
+			 		model = "GPT-5",
+        },
+        inline = {
+          adapter = "openai",
+			 		model = "GPT-5",
+        },
+        cmd = {
+          adapter = "openai",
+			 		model = "GPT-5",
+        },
+      },
+		}
+
+	)
 
 		vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true, desc = "AI Actions" })
 		vim.keymap.set(
