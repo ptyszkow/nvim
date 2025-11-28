@@ -30,7 +30,7 @@ vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format Buffer" }
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
-vim.lsp.enable({ "lua_ls", "csharp_ls", "pyright" })
+vim.lsp.enable({ "lua_ls", "csharp_ls", "basedpyright" })
 
 require("config.lazy")
 require("config.dap")
@@ -54,4 +54,4 @@ vim.diagnostic.config({
 	},
 })
 
-vim.g.python3_host_prog = "/home/peter/venv/bin/python"
+vim.g.python3_host_prog = "/home/peter/Projects/TestUV/.venv/bin/python"

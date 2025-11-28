@@ -11,9 +11,10 @@ return {
 	config = function(_, opts)
 		local overseer = require("overseer")
 		overseer.setup(opts)
-		
+
+		-- .NET tasks
 		overseer.register_template({
-			name = "dotnet build",
+			name = "build",
 			builder = function()
 				return {
 					cmd = { "dotnet" },
@@ -27,7 +28,7 @@ return {
 		})
 
 		overseer.register_template({
-			name = "dotnet run",
+			name = "run",
 			builder = function()
 				return {
 					cmd = { "dotnet" },
@@ -41,7 +42,7 @@ return {
 		})
 
 		overseer.register_template({
-			name = "dotnet test",
+			name = "test",
 			builder = function()
 				return {
 					cmd = { "dotnet" },
@@ -55,7 +56,7 @@ return {
 		})
 
 		overseer.register_template({
-			name = "dotnet watch run",
+			name = "watch",
 			builder = function()
 				return {
 					cmd = { "dotnet" },
@@ -69,7 +70,7 @@ return {
 		})
 
 		overseer.register_template({
-			name = "dotnet clean",
+			name = "clean",
 			builder = function()
 				return {
 					cmd = { "dotnet" },
@@ -81,50 +82,67 @@ return {
 				filetype = { "cs", "csharp" },
 			},
 		})
+
+		-- Python/uv tasks
+		overseer.register_template({
+			name = "run",
+			builder = function()
+				return {
+					cmd = { "uv" },
+					args = { "run", "main.py" },
+					components = { "default" }
+				}
+			end,
+			condition = {
+				filetype = { "python" },
+			},
+		})
+
+		overseer.register_template({
+			name = "sync",
+			builder = function()
+				return {
+					cmd = { "uv" },
+					args = { "sync" },
+					components = { "default" }
+				}
+			end,
+			condition = {
+				filetype = { "python" },
+			},
+		})
+
+		overseer.register_template({
+			name = "build",
+			builder = function()
+				return {
+					cmd = { "basedpyright" },
+					args = {},
+					components = { "default" }
+				}
+			end,
+			condition = {
+				filetype = { "python" },
+			},
+		})
+
+		overseer.register_template({
+			name = "test",
+			builder = function()
+				return {
+					cmd = { "uv" },
+					args = { "run", "pytest" },
+					components = { "default" }
+				}
+			end,
+			condition = {
+				filetype = { "python" },
+			},
+		})
 	end,
 	keys = {
 		{
-			"<leader>rb",
-			function()
-				require("overseer").run_template({ name = "dotnet build" })
-			end,
-			mode = "n",
-			desc = "Overseer: Build .NET Project",
-		},
-		{
-			"<leader>rr",
-			function()
-				require("overseer").run_template({ name = "dotnet run" })
-			end,
-			mode = "n",
-			desc = "Overseer: Run .NET Project",
-		},
-		{
-			"<leader>rt",
-			function()
-				require("overseer").run_template({ name = "dotnet test" })
-			end,
-			mode = "n",
-			desc = "Overseer: Test .NET Project",
-		},
-		{
-			"<leader>rw",
-			function()
-				require("overseer").run_template({ name = "dotnet watch run" })
-			end,
-			mode = "n",
-			desc = "Overseer: Watch Run .NET Project",
-		},
-		{
-			"<leader>rc",
-			function()
-				require("overseer").run_template({ name = "dotnet clean" })
-			end,
-			mode = "n",
-			desc = "Overseer: Clean .NET Project",
-		},
-		{
-			"<leader>ro",
+			"<leader>oo",
 			function()
 				require("overseer").toggle()
 			end,
@@ -132,20 +150,42 @@ return {
 			desc = "Overseer: Toggle Task List",
 		},
 		{
-			"<leader>rT",
+			"<leader>ob",
 			function()
-				require("overseer").run_template()
+				require("overseer").run_task({ name = "build" })
 			end,
 			mode = "n",
-			desc = "Overseer: Run Task Template",
+			desc = "Overseer: Build",
 		},
 		{
-			"<leader>rA",
+			"<leader>or",
 			function()
-				require("overseer").run_action()
+				require("overseer").run_task({ name = "run" })
 			end,
 			mode = "n",
-			desc = "Overseer: Run Task Action",
+			desc = "Overseer: Run",
+		},
+		{
+			"<leader>ot",
+			function()
+				require("overseer").run_task({ name = "test" })
+			end,
+			mode = "n",
+			desc = "Overseer: Test",
+		},
+		{
+			"<leader>os",
+			function()
+				require("overseer").run_task()
+			end,
+			mode = "n",
+			desc = "Overseer: Select Task",
+		},
+		{
+			"<leader>oa",
+			"<cmd>OverseerTaskAction<cr>",
+			mode = "n",
+			desc = "Overseer: Task Action",
 		},
 	},
 }
