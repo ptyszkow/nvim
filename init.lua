@@ -30,6 +30,10 @@ vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format Buffer" }
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
+vim.keymap.set("n", "<leader>ft",
+  [[:vimgrep /\v^\s*[-*]\s+\[ \]\s+.*/gj **/*.md<CR>]],
+  { desc = "Find Markdown unchecked todos" }
+)
 vim.lsp.enable({ "lua_ls", "csharp_ls", "basedpyright" })
 
 require("config.lazy")
@@ -54,4 +58,4 @@ vim.diagnostic.config({
 	},
 })
 
-vim.g.python3_host_prog = "/home/peter/Projects/TestUV/.venv/bin/python"
+--vim.g.python3_host_prog = "/home/peter/Projects/TestUV/.venv/bin/python"
