@@ -9,7 +9,7 @@ vim.opt.shiftwidth = 2
 vim.opt.swapfile = false
 vim.opt.winborder = "rounded"
 vim.opt.signcolumn = "yes"
-vim.opt.clipboard = "unnamedplus"
+--vim.opt.clipboard = "unnamedplus"
 -- Splits
 vim.opt.splitbelow = true
 vim.opt.splitright = true

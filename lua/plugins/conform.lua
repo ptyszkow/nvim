@@ -9,7 +9,8 @@ return {
 				sql = {"sqlformat"},
 				json = {"jq"},
 				html = {"tidy"},
-				nix = {"alejandra"}
+				nix = {"alejandra"},
+				markdown = {"prettier"}
 				-- You can customize some of the format options for the filetype (:help conform.format)
 			},
 		})
