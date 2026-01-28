@@ -7,16 +7,23 @@ return {
 		animate = { enabled = true },
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
-    explorer = {
-      enabled = true,
-      keymaps = {
-        ["<C-s>"] = function(current)
-          if current and current.path and not current.is_directory then
-            vim.cmd("vsplit " .. vim.fn.fnameescape(current.path))
-          end
-        end,
-      },
-    },
+		image = {
+			enabled = true,
+			doc = {
+				inline = true,
+				float = true,
+			},
+		},
+		explorer = {
+			enabled = true,
+			keymaps = {
+				["<C-s>"] = function(current)
+					if current and current.path and not current.is_directory then
+						vim.cmd("vsplit " .. vim.fn.fnameescape(current.path))
+					end
+				end,
+			},
+		},
 		indent = { enabled = true },
 		input = { enabled = true },
 
@@ -31,7 +38,7 @@ return {
 				leaks = false, -- show when pickers don't get garbage collected
 				explorer = false, -- show explorer debug info
 				files = true, -- show file debug info
-				grep = true, -- show file debug info
+				grep = true,  -- show file debug info
 				proc = false, -- show proc debug info
 				extmarks = false, -- show extmarks errors
 			},
@@ -84,6 +91,13 @@ return {
 				Snacks.picker.notifications()
 			end,
 			desc = "Notification History",
+		},
+		{
+			"<leader>sn",
+			function()
+				Snacks.notifier.show_history()
+			end,
+			desc = "Notification History (Notifier)",
 		},
 		{
 			"<leader>e",
@@ -236,13 +250,6 @@ return {
 				Snacks.picker.autocmds()
 			end,
 			desc = "Autocmds",
-		},
-		{
-			"<leader>sb",
-			function()
-				Snacks.picker.lines()
-			end,
-			desc = "Buffer Lines",
 		},
 		{
 			"<leader>sc",
@@ -444,13 +451,6 @@ return {
 			desc = "Select Scratch Buffer",
 		},
 		{
-			"<leader>n",
-			function()
-				Snacks.notifier.show_history()
-			end,
-			desc = "Notification History",
-		},
-		{
 			"<leader>bd",
 			function()
 				Snacks.bufdelete()
@@ -557,12 +557,12 @@ return {
 				Snacks.toggle.diagnostics():map("<leader>ud")
 				Snacks.toggle.line_number():map("<leader>ul")
 				Snacks.toggle
-					.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
-					:map("<leader>uc")
+						.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
+						:map("<leader>uc")
 				Snacks.toggle.treesitter():map("<leader>uT")
 				Snacks.toggle
-					.option("background", { off = "light", on = "dark", name = "Dark Background" })
-					:map("<leader>ub")
+						.option("background", { off = "light", on = "dark", name = "Dark Background" })
+						:map("<leader>ub")
 				Snacks.toggle.inlay_hints():map("<leader>uh")
 				Snacks.toggle.indent():map("<leader>ug")
 				Snacks.toggle.dim():map("<leader>uD")
