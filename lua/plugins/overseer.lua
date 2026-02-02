@@ -89,7 +89,7 @@ return {
 			builder = function()
 				return {
 					cmd = { "uv" },
-					args = { "run", "main.py" },
+					args = { "run", vim.fn.expand("%") },
 					components = { "default" }
 				}
 			end,

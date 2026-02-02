@@ -1,4 +1,8 @@
 -- Options
+vim.g.active_theme = "catppuccin" -- options: tokyonight, catppuccin, kanagawa, rose-pine, cyberdream
+-- vim.g.active_theme = "kanagawa"
+-- vim.g.active_theme = "rose-pine"
+--vim.g.active_theme = "cyberdream"
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.opt.number = true
