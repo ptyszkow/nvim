@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader>ft",
   [[:vimgrep /\v^\s*[-*]\s+\[ \]\s+.*/gj **/*.md<CR>]],
   { desc = "Find Markdown unchecked todos" }
 )
-vim.lsp.enable({ "lua_ls", "csharp_ls", "basedpyright" })
+vim.lsp.enable({ "lua_ls", "csharp_ls", "basedpyright", "jsonls", "yamlls", "html", "ts_ls" })
 
 require("config.lazy")
 require("config.dap")
