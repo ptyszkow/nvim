@@ -13,8 +13,18 @@ vim.opt.shiftwidth = 2
 vim.opt.swapfile = false
 vim.opt.winborder = "rounded"
 vim.opt.signcolumn = "yes"
-vim.g.clipboard = "osc52"
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = function() return { vim.split(vim.fn.getreg("+"), "\n"), vim.fn.getregtype("+") } end,
+    ["*"] = function() return { vim.split(vim.fn.getreg("*"), "\n"), vim.fn.getregtype("*") } end,
+  },
+}
 -- Splits
 vim.opt.splitbelow = true
 vim.opt.splitright = true
