@@ -11,7 +11,7 @@ return
     ---@type opencode.Opts
     vim.g.opencode_opts = {
       -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
-    hello}
+    }
 
     -- Required for `opts.events.reload`.
     vim.o.autoread = true
@@ -27,8 +27,6 @@ return
     vim.keymap.set("n", "<leader>au", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
     vim.keymap.set("n", "<leader>ad", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
 
-    vim.keymap.set("n", "<C>u", function() require("opencode").command("session.half.page.up") end,   { desc = "Scroll opencode up" })
-    vim.keymap.set("n", "<C>b", function() require("opencode").command("session.half.page.down") end, { desc = "Scroll opencode down" })
     -- You may want these if you stick with the opinionated "<C-a>" and "<C-x>" above — otherwise consider "<leader>o…".
     vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
     vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })

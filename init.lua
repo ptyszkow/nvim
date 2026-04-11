@@ -37,6 +37,9 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+if vim.fn.executable("rg") == 1 then
+  vim.o.grepprg = "rg --vimgrep --smart-case"
+end
 vim.cmd(":hi statusline guibg=NONE")
 
 vim.keymap.set("n", "<leader>ui", ":update<CR> :source<CR>", { desc = "Update and Source Init" })
@@ -49,11 +52,12 @@ vim.keymap.set("n", "<leader>ft",
   [[:vimgrep /\v^\s*[-*]\s+\[ \]\s+.*/gj **/*.md<CR>]],
   { desc = "Find Markdown unchecked todos" }
 )
-vim.lsp.enable({ "lua_ls", "csharp_ls", "basedpyright", "jsonls", "yamlls", "html", "ts_ls" })
+-- C#/.NET language server: "omnisharp" or "csharp_ls"
+vim.g.dotnet_lsp = "omnisharp"
+vim.lsp.enable({ "lua_ls", vim.g.dotnet_lsp, "basedpyright", "jsonls", "yamlls", "html", "ts_ls" })
 
 require("config.lazy")
 require("config.dap")
-require("config.terminal")
 
 vim.diagnostic.config({
 	virtual_text = {

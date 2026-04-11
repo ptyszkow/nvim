@@ -89,11 +89,6 @@ DAP UI automatically opens when debugging starts and closes when debugging ends.
 
 - `<leader>o` - Open Oil.nvim (file browser that lets you edit directories like buffers)
 
-### Terminal
-
-- `<Ctrl-\>` - Toggle floating terminal (works in normal and terminal mode)
-- `<Esc>` in terminal mode - Return to normal mode
-
 ## Special Configuration Notes
 
 ### Python Environment

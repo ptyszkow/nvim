@@ -1,7 +1,16 @@
 return {
 	"saghen/blink.cmp",
-	-- optional: provides snippets for the snippet source
-	dependencies = { "rafamadriz/friendly-snippets" },
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.*",
+			build = "make install_jsregexp",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+			end,
+		},
+	},
 
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
@@ -23,6 +32,8 @@ return {
 		-- See :h blink-cmp-config-keymap for defining your own keymap
 		keymap = { preset = "default" },
 
+		snippets = { preset = "luasnip" },
+
 		appearance = {
 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			-- Adjusts spacing to ensure icons are aligned
@@ -43,12 +54,10 @@ return {
 					module = "lazydev.integrations.blink",
 					score_offset = 100,
 				},
--- 				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 			},
 
 			per_filetype = {
 				codecompanion = { "codecompanion" },
- --    		sql = { 'snippets', 'dadbod', 'buffer' },
 			},
 		},
 

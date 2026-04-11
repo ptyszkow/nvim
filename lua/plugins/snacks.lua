@@ -38,7 +38,7 @@ return {
 				explorer = false, -- show explorer debug info
 				files = true, -- show file debug info
 				grep = true,  -- show file debug info
-				proc = false, -- show proc debug info
+				proc = true, -- show proc debug info
 				extmarks = false, -- show extmarks errors
 			},
 		},
@@ -123,7 +123,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				Snacks.picker.files()
+				Snacks.picker.files({ live = true })
 			end,
 			desc = "Find Files",
 		},
