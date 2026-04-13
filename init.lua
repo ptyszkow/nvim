@@ -14,15 +14,21 @@ vim.opt.swapfile = false
 vim.opt.winborder = "rounded"
 vim.opt.signcolumn = "yes"
 vim.o.clipboard = "unnamedplus"
+local osc52 = require("vim.ui.clipboard.osc52")
+local clipboard_cache = { ["+"] = { { "" }, "v" }, ["*"] = { { "" }, "v" } }
+local function make_copy(reg)
+  local inner = osc52.copy(reg)
+  return function(lines, regtype)
+    clipboard_cache[reg] = { lines, regtype or "v" }
+    inner(lines, regtype)
+  end
+end
 vim.g.clipboard = {
   name = "OSC 52",
-  copy = {
-    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-  },
+  copy = { ["+"] = make_copy("+"), ["*"] = make_copy("*") },
   paste = {
-    ["+"] = function() return { vim.split(vim.fn.getreg("+"), "\n"), vim.fn.getregtype("+") } end,
-    ["*"] = function() return { vim.split(vim.fn.getreg("*"), "\n"), vim.fn.getregtype("*") } end,
+    ["+"] = function() return clipboard_cache["+"] end,
+    ["*"] = function() return clipboard_cache["*"] end,
   },
 }
 -- Splits
@@ -43,17 +49,19 @@ end
 vim.cmd(":hi statusline guibg=NONE")
 
 vim.keymap.set("n", "<leader>ui", ":update<CR> :source<CR>", { desc = "Update and Source Init" })
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format Buffer" })
 --vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Symbol" })
-vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set("n", "<leader>ch", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle Inlay Hints" })
+vim.keymap.set("n", "<leader>cL", vim.lsp.codelens.run, { desc = "Run Codelens" })
 
 vim.keymap.set("n", "<leader>ft",
   [[:vimgrep /\v^\s*[-*]\s+\[ \]\s+.*/gj **/*.md<CR>]],
   { desc = "Find Markdown unchecked todos" }
 )
--- C#/.NET language server: "omnisharp" or "csharp_ls"
-vim.g.dotnet_lsp = "omnisharp"
+vim.g.dotnet_lsp = "csharp_ls"
 vim.lsp.enable({ "lua_ls", vim.g.dotnet_lsp, "basedpyright", "jsonls", "yamlls", "html", "ts_ls" })
 
 require("config.lazy")
